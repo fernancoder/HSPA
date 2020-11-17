@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="card-header">
+    Añadir nueva propiedad
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)='onSubmit(Form)' #Form="ngForm">
+      <div class="form-group col-12">
+        <label for="name">Nombre</label>
+        <input type="text" class="form-control" ngModel name="Name" required>
+      </div>
+      <div class="form-group col-12">
+        <label for="type">Tipo</label>
+        <input type="text" class="form-control" ngModel name="Type">
+      </div>
+      <div class="form-group col-12">
+        <label for="price">Precio</label>
+        <input type="text" class="form-control" ngModel name="Price">
+      </div>
+      <div class="form-group col-12">
+        <button [disabled]="!Form.valid" type="submit" class="btn btn-primary mr-2">Save</button>
+        <button type="reset" class="btn btn-primary">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

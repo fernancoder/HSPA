@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IProperty } from '../IProperty';
 
 @Component({
     selector: 'app-property-card',
@@ -7,12 +8,12 @@ import { Component } from '@angular/core';
 })
 
 export class PropertyCardComponent {
-    Property: any = {
-        "Id": 1,
-        "Name": "Plazuelos de Eresma (Segovia)",
-        "Type": "Adosado",
-        "Price": 850
-    } 
+    @Input() property : IProperty
+
+    constructor()
+    {
+        this.property = {Id:0, SellRent:1, Type:"", Name:"", Price:0}
+    }
 }
 
 
