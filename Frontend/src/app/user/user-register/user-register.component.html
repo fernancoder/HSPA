@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-6 m-auto">
+    <div class="card m-auto">
+      <div class="card-header">
+        Registro
+      </div>
+      <div class="card-body">
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+          <div class="form-group col-12">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" 
+            formControlName="name"
+            >
+            <span *ngIf="!name.valid && (name.touched || userSubmitted)" class="error-block">
+              Debe introducir un nombre
+            </span>
+          </div>
+          <div class="form-group col-12">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" formControlName="email">
+            <span *ngIf="!email.valid && (email.touched || userSubmitted)" class="error-block">
+              <span *ngIf="email.hasError('required')">
+                Debe introducir un correo
+              </span>
+              <span *ngIf="email.hasError('email')">
+                Debe introducir un correo válido
+              </span>
+            </span>
+          </div>
+          <div class="form-group col-12">
+            <label for="password">Contraseña</label>
+            <input type="password" class="form-control" formControlName="password">
+            <span *ngIf="!password.valid && (password.touched || userSubmitted)" class="error-block">
+              <span *ngIf="password.hasError('required')">
+                Debe introducir una contraseña
+              </span>
+              <span *ngIf="password.hasError('minlength')">
+                La contraseña debe incluir al menos 8 caracteres
+              </span>
+            </span>
+          </div>
+          <div class="form-group col-12">
+            <label for="cpassword">Confirmar contraseña</label>
+            <input type="password" class="form-control" formControlName="cpassword">
+            <span *ngIf="!cpassword.valid && (cpassword.touched || userSubmitted)" class="error-block">
+              <span *ngIf="cpassword.hasError('required')">
+                Debe confirmar la contraseña
+              </span>
+            </span>
+            <span *ngIf="registrationForm.hasError('notmatched') && cpassword.valid" class="error-block">
+              Las contraseñas no coinciden
+            </span>
+          </div>
+          <div class="form-group col-12">
+            <label for="mobil">Mobile</label>
+            <input type="text" class="form-control" formControlName="mobile">
+            <span *ngIf="!mobile.valid && (mobile.touched || userSubmitted)" class="error-block">
+              <span *ngIf="password.hasError('required')">
+                Debe introducir un número de móvil
+              </span>
+              <span *ngIf="mobile.hasError('minlength')">
+                El número de móvil debe incluir al menos 9 números
+              </span>
+            </span>
+          </div>
+
+          <div class="form-group col-12">
+            <button type="submit" class="btn btn-primary mr-2">Registrar</button>
+            <button type="reset" class="btn btn-secondary">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

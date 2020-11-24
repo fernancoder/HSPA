@@ -1,25 +1,178 @@
-<div class="card">
-  <div class="card-header">
-    Añadir nueva propiedad
+<div class="row">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header">
+        Tu Propiedad
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)='onSubmit()' #Form="ngForm">
+          <div>
+            <tabset #formTabs>
+              <tab heading="Información Básica">
+                <div class="form-group col-12">
+                  <p>Quiero</p>
+                  <div class="btn-group" btnRadioGroup>
+                    <label class="btn btn-outline-primary mr-2"
+                    btnRadio=1 role="button" name="SellRent">Vender</label>
+                    <label class="btn btn-outline-primary"
+                    btnRadio=2 role="button" name="SellRent">Alquilar</label>
+                  </div>
+                </div>
+                <div class="form-group col-12">
+                  <p>Habitaciones</p>
+                  <div class="btn-group" btnRadioGroup>
+                    <label 
+                    *ngFor="let bhk of ['1','2','3','4','5']" 
+                    class="btn btn-outline-primary mr-2"
+                    [btnRadio]="bhk" tabindex="0" role="button" name="SellRent">{{bhk}}</label>                
+                  </div>
+                </div>
+                <div class="form-group col-12">
+                  <p>Tipo de propiedad</p>
+                  <div class="btn-group" btnRadioGroup>
+                    <label 
+                    *ngFor="let ptype of propertyTypes" 
+                    class="btn btn-outline-primary mr-2"
+                    [btnRadio]="ptype" tabindex="0" role="button" name="SellRent">{{ptype}}</label>                
+                  </div>
+                </div>
+                <div class="form-group col-12">
+                  <p>Muebles</p>
+                  <div class="btn-group" btnRadioGroup>
+                    <label 
+                    *ngFor="let ftype of furnishTypes" 
+                    class="btn btn-outline-primary mr-2"
+                    [btnRadio]="ftype" tabindex="0" role="button" name="SellRent">{{ftype}}</label>
+                  </div>
+                </div>
+                <div class="form-group col-12">
+                  <label for="name">En Edificio/Sociedad/Proyecto</label>
+                  <input type="text" class="form-control" 
+                  #propName="ngModel" 
+                  ngModel name="Name" 
+                  required
+                  [(ngModel)]="propertyView.Name">
+                  <span *ngIf="!propName.valid && propName.touched" class="error-block">
+                    El nombre es obligatorio
+                  </span>
+                </div>
+                <div class="form-group col-12">
+                  <label for="price">Ciudad</label>
+                  <input type="text" class="form-control" ngModel name="Price">
+                </div>
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1)">Siguiente</button>
+              </tab>
+              <tab heading="Precio y superficie">
+                <div class="form-group col-12">
+                  <label for="type">Precio (en €)</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-12">
+                  <label for="type">Seguridad (en €)</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-12">
+                  <label for="type">Mangtenimiento (en €)</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-12">
+                  <label for="type">Superficie contruida (en m2)</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-12">
+                  <label for="type">Jardín (en m2)</label>
+                  <input type="text" class="form-control">
+                </div>
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2)">Siguiente</button>
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(0)">Anterior</button>
+              </tab>
+              <tab heading="Dirección">
+                <div class="form-group col-12">
+                  <label for="type">Piso</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-12">
+                  <label for="type">Total Piso</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-12">
+                  <label for="type">Dirección</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-12">
+                  <label for="type">Localidad</label>
+                  <input type="text" class="form-control">
+                </div>
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(3)">Siguiente</button>
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(1)">Anterior</button>
+              </tab>
+              <tab heading="Otros Detalles">            
+                <div class="form-group col-12">
+                  <p>Disponibilidad inmediata</p>
+                  <div class="btn-group" btnRadioGroup>
+                    <label class="btn btn-outline-primary mr-2"
+                    btnRadio=1 role="button" name="RTM">Si</label>
+                    <label class="btn btn-outline-primary"
+                    btnRadio=2 role="button" name="RTM">No</label>
+                  </div>
+                </div>
+                <div class="form-group col-3">
+                  <label>Disponible desde</label>
+                  <input type="text" 
+                  placeholder="Datepicker"
+                  class="form-control"
+                  bsDatepicker [bsConfig]="{containerClass: 'theme-dark-blue', dateInputFormat: 'DD-MM-YYYY'}">
+                </div>
+                <div class="form-group col-12">
+                  <label for="type">Edad de la propiedad</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-12">
+                  <p>Comunidad cerrada</p>
+                  <div class="btn-group" btnRadioGroup>
+                    <label class="btn btn-outline-primary mr-2"
+                    btnRadio=1 role="button" name="gc">Si</label>
+                    <label class="btn btn-outline-primary"
+                    btnRadio=2 role="button" name="gc">No</label>
+                  </div>
+                </div>
+                <div class="form-group col-12">
+                  <p>Entrada principal</p>
+                  <div class="btn-group" btnRadioGroup>
+                    <label 
+                      *ngFor="let etype of entryTypes" 
+                      class="btn btn-outline-primary mr-2"
+                      [btnRadio]="etype" tabindex="0" role="button" name="entry">{{etype}}</label>
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                  <label for="type">Descripción</label>
+                  <input type="text" class="form-control">
+                </div>
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(4)">Siguiente</button>
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(2)">Anterior</button>
+              </tab>
+              <tab heading="Fotos">
+                <div class="form-group col-12">
+                  <div class="photo-control">
+                    <button type="button" class="mt-5">Cargar</button> <br>
+                    En consturcción
+                  </div>
+                </div>
+                <button type="button" class="btn btn-primary btn-block" (click)="selectTab(3)">Anterior</button>
+                <button type="reset" class="btn btn-primary btn-block">Cancelar</button>
+                <button type="submit" class="btn btn-primary btn-block">Guardar</button>            
+              </tab>
+            </tabset>
+          </div>     
+        </form>
+      </div>
+    </div>
   </div>
-  <div class="card-body">
-    <form (ngSubmit)='onSubmit(Form)' #Form="ngForm">
-      <div class="form-group col-12">
-        <label for="name">Nombre</label>
-        <input type="text" class="form-control" ngModel name="Name" required>
-      </div>
-      <div class="form-group col-12">
-        <label for="type">Tipo</label>
-        <input type="text" class="form-control" ngModel name="Type">
-      </div>
-      <div class="form-group col-12">
-        <label for="price">Precio</label>
-        <input type="text" class="form-control" ngModel name="Price">
-      </div>
-      <div class="form-group col-12">
-        <button [disabled]="!Form.valid" type="submit" class="btn btn-primary mr-2">Save</button>
-        <button type="reset" class="btn btn-primary">Cancel</button>
-      </div>
-    </form>
+  <div class="col-4">
+    <h3>Preview de tu propiedad</h3>
+    <div>
+      <app-property-card [property]="propertyView"></app-property-card>
+    </div>
   </div>
 </div>

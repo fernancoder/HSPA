@@ -11,7 +11,7 @@ import { IProperty } from '../IProperty';
 
 export class PropertyListComponent implements OnInit {
   SellRent = 1;
-  properties: Array<IProperty> = [];
+  properties: Array<IProperty> //= [];
 
   constructor(private route: ActivatedRoute, private housingService: HousingService) { }
 

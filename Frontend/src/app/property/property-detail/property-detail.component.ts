@@ -11,7 +11,7 @@ export class PropertyDetailComponent implements OnInit {
   public propertyId: number
 
   constructor(private route: ActivatedRoute) {
-    this.propertyId = 0
+    //this.propertyId = 0
   }
 
   ngOnInit() {

@@ -12,7 +12,7 @@ export class PropertyCardComponent {
 
     constructor()
     {
-        this.property = {Id:0, SellRent:1, Type:"", Name:"", Price:0}
+        //this.property = {Id:0, SellRent:1, Type:"", Name:"", Price:0}
     }
 }
 

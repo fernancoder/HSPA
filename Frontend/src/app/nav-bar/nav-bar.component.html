@@ -13,12 +13,47 @@
         <a class="nav-link" routerLinkActive="active" routerLink="/rent-property">Alquilar</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/add-property">Listado Propiedades (Libre)</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/add-property">Tu Propiedad (Gratis)</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div>
+      <ul class="nav navbar-nav">
+        <li *ngIf="!loggedin()" class="nav-item">
+          <a class="nav-link" 
+          routerLinkActive="active" 
+          routerLink="/user/register"
+          >Registrarse</a>  
+        </li>
+        <li *ngIf="!loggedin()" class="nav-item">
+          <a class="nav-link" 
+          routerLinkActive="active" 
+          routerLink="/user/login"
+          >Identificarse</a>  
+        </li>
+        <!--<li *ngIf="loggedin()" class="nav-item">
+          <a class="nav-link" (click)="onLogout()"
+          >Cerrar sesión</a>  
+        </li> -->
+        <div *ngIf="loggedin()" class="dropdown mr-5" dropdown>
+          <a href="#" class="dropdown-toggle text-light" dropdownToggle (click)="false">
+            Bienvenido {{loggedUser}}
+          </a>
+          <div class="dropdown-menu" *dropdownMenu>
+            <a href="#" class="dropdown-item">
+              <i class="fa fa-tachometer"></i> Panel de control
+            </a>
+            <a href="#" class="dropdown-item">
+              <i class="fa fa-user-circle-o"></i> Perfil
+            </a>
+            <a href="#" class="dropdown-item">
+              <i class="fa fa-key"></i> Cambiar contraseña
+            </a>
+            <a (click)="onLogout()" class="dropdown-item">
+              <i class="fa fa-sign-out"></i> Cerrar sesión
+            </a>
+          </div>
+        </div>
+      </ul>
+    </div>
   </div>
 </nav>
