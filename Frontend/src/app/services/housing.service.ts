@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProperty } from 'src/app/property/IProperty';
+import { IProperty } from 'src/app/model/iproperty';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
